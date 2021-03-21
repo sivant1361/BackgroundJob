@@ -2,6 +2,9 @@
 
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name ="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.WAKE_LOCK"/>
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
   <application android:name=".MainApplication" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:allowBackup="false" android:theme="@style/AppTheme">
     <activity android:name=".MainActivity" android:label="@string/app_name" android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode" android:launchMode="singleTask" android:windowSoftInputMode="adjustResize">
@@ -11,6 +14,16 @@
       </intent-filter>
     </activity>
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+    <service
+        android:name=".BackgroundJob"
+        android:exported="true"
+        android:permission="android.permission.BIND_JOB_SERVICE"/>
+    <service
+        android:name=".ExactJob"
+        android:enabled="true"/>
+    <service
+        android:name=".ReactNativeEventStarter$MyHeadlessJsTaskService"
+        android:enabled="true"/>
   </application>
 
 </manifest>

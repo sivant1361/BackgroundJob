@@ -12,10 +12,21 @@ BackgroundJob.register(backgroundJob);
 
 var backgroundSchedule = {
   jobKey: 'myJob',
+  allowExecutionInForeground: true,
+  notificationTitle: 'My notification title',
+  notificationText: 'My notification text',
+  exact: true,
+  period: 15000,
 };
 
 BackgroundJob.schedule(backgroundSchedule)
   .then(() => console.log('Success'))
+  .catch((err) => console.err(err));
+
+BackgroundJob.isAppIgnoringBatteryOptimization((err, isIgnoring) =>
+  console.log(`Callback: isIgnoring = ${isIgnoring}`),
+)
+  .then((isIgnoring) => console.log(`Promise: isIgnoring = ${isIgnoring}`))
   .catch((err) => console.err(err));
 
 const App = () => {
